@@ -17,8 +17,12 @@ export default function LeafAnimation() {
     const container = containerRef.current;
     if (!container) return;
 
+    // Skip entirely for reduced-motion users; fewer leaves on small screens.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
     const colors = ["#2e2e2e", "#6f6f6f", "#b8b8b8"];
-    const leafCount = 12;
+    const leafCount = isMobile ? 6 : 12;
 
     for (let i = 0; i < leafCount; i++) {
       const leaf = document.createElement("div");

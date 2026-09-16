@@ -75,18 +75,18 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-24 px-6 bg-dark-bg">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 bg-dark-bg overflow-hidden">
       <div ref={sectionRef} className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="about-text-reveal text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+        <div className="text-center mb-10 sm:mb-16">
+          <span className="about-text-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
             Our Story
           </span>
-          <h2 className="about-text-reveal text-4xl md:text-5xl font-bold text-warm-white mt-4">
+          <h2 className="about-text-reveal text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 px-2 text-balance">
             About Passion Photography
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div ref={visualRef}>
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
@@ -99,30 +99,30 @@ export default function About() {
             </div>
           </div>
 
-          <div className="space-y-6">
-            <p className="about-text-reveal text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+          <div className="space-y-5 sm:space-y-6 min-w-0">
+            <p className="about-text-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
               Honest · Warm · Detailed
             </p>
-            <h3 className="about-text-reveal text-3xl md:text-4xl font-bold text-warm-white leading-tight">
+            <h3 className="about-text-reveal text-2xl sm:text-3xl md:text-4xl font-bold text-warm-white leading-tight text-balance">
               From Passion to Premium
               <br />
               Kurnool&apos;s Wedding &amp; Newborn Studio
             </h3>
-            <p className="about-text-reveal text-muted-text text-lg leading-relaxed">
+            <p className="about-text-reveal text-muted-text text-base sm:text-lg leading-relaxed">
               What began as a passion for capturing life&apos;s most precious
               moments has grown into one of Kurnool&apos;s most trusted
               photography studios. Passion Photography serves families across
               Gandhi Nagar and nearby areas — from intimate newborn and
               maternity shoots to grand weddings and cultural events.
             </p>
-            <p className="about-text-reveal text-muted-text text-lg leading-relaxed">
+            <p className="about-text-reveal text-muted-text text-base sm:text-lg leading-relaxed">
               Our signature aesthetic blends natural light, warm color, and
               honest emotion — no cookie-cutter packages. Rated 5.0 on Google,
               families choose us for quality they can feel and prices that are
               genuinely fair.
             </p>
 
-            <div className="about-text-reveal flex gap-8 pt-6">
+            <div className="about-text-reveal flex flex-col min-[420px]:flex-row gap-4 min-[420px]:gap-8 pt-4 sm:pt-6">
               <div>
                 <p className="text-gold font-bold text-lg">Photography</p>
                 <p className="text-muted-text text-sm">
@@ -140,19 +140,19 @@ export default function About() {
 
             <div
               ref={statsRef}
-              className="grid grid-cols-3 gap-6 pt-8 border-t border-gold/10"
+              className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-gold/10"
             >
-              <div className="stat-item">
-                <p className="text-3xl font-bold text-gold">5.0★</p>
-                <p className="text-muted-text text-sm mt-1">Google Rating</p>
+              <div className="stat-item min-w-0">
+                <p className="text-2xl sm:text-3xl font-bold text-gold">5.0★</p>
+                <p className="text-muted-text text-xs sm:text-sm mt-1">Google Rating</p>
               </div>
-              <div className="stat-item">
-                <p className="text-3xl font-bold text-gold">104+</p>
-                <p className="text-muted-text text-sm mt-1">Google Reviews</p>
+              <div className="stat-item min-w-0">
+                <p className="text-2xl sm:text-3xl font-bold text-gold">104+</p>
+                <p className="text-muted-text text-xs sm:text-sm mt-1">Google Reviews</p>
               </div>
-              <div className="stat-item">
-                <p className="text-3xl font-bold text-gold">10+</p>
-                <p className="text-muted-text text-sm mt-1">Photo Services</p>
+              <div className="stat-item min-w-0">
+                <p className="text-2xl sm:text-3xl font-bold text-gold">10+</p>
+                <p className="text-muted-text text-xs sm:text-sm mt-1">Photo Services</p>
               </div>
             </div>
           </div>

@@ -7,13 +7,14 @@ import { services, type ServiceCard } from "@/lib/services";
 
 const ROTATE_MS = 5000;
 
-const CARD_W = "min(300px, 65vw)";
-const CARD_H = "min(400px, 87vw)";
+const CARD_W = "min(300px, 72vw)";
+const CARD_H = "min(400px, 100vw)";
 
 export default function Services() {
   const visible = services.filter((s) => s.imageUrl);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const dragX = useRef<number | null>(null);
   const n = Math.max(visible.length, 1);
 
@@ -28,20 +29,28 @@ export default function Services() {
     return () => clearInterval(id);
   }, [active, paused, go]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   return (
     <section
       id="services"
-      className="py-24 bg-dark-bg overflow-hidden"
+      className="py-16 sm:py-24 bg-dark-bg overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         <Reveal>
-          <div className="text-center">
-            <p className="text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+          <div className="text-center px-2">
+            <p className="text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
               What We Offer
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-warm-white mt-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
               Tailored{" "}
               <span className="italic text-gold">Experiences</span>
             </h2>
@@ -49,7 +58,7 @@ export default function Services() {
         </Reveal>
 
         <div
-          className="relative mt-14 overflow-hidden"
+          className="relative mt-10 sm:mt-14 overflow-hidden"
           style={{
             height: CARD_H,
             perspective: 1400,
@@ -73,7 +82,11 @@ export default function Services() {
             const diff = ((i - active) % n + n) % n;
             const offset = diff > n / 2 ? diff - n : diff;
             const abs = Math.abs(offset);
-            const hidden = abs > 2;
+            // On mobile only show immediate neighbours to avoid clutter/overflow.
+            const hidden = isMobile ? abs > 1 : abs > 2;
+            const spread = isMobile ? 52 : 62;
+            const tilt = isMobile ? -22 : -32;
+            const scale = isMobile ? 1 - abs * 0.1 : 1 - abs * 0.14;
 
             return (
               <button
@@ -81,16 +94,20 @@ export default function Services() {
                 type="button"
                 onClick={() => go(i)}
                 aria-label={`View ${service.title}`}
+                tabIndex={hidden ? -1 : 0}
+                aria-hidden={hidden}
                 className="absolute top-0 outline-none"
                 style={{
                   width: CARD_W,
                   height: CARD_H,
                   left: "50%",
-                  transform: `translateX(calc(-50% + ${offset * 62}%)) rotateY(${offset * -32}deg) scale(${1 - abs * 0.14})`,
+                  transform: `translateX(calc(-50% + ${offset * spread}%)) rotateY(${offset * tilt}deg) scale(${scale})`,
                   opacity: hidden ? 0 : 1 - abs * 0.35,
                   zIndex: 20 - abs * 5,
                   transition: "all 600ms cubic-bezier(0.22, 1, 0.36, 1)",
                   cursor: hidden ? "default" : "pointer",
+                  visibility: hidden ? "hidden" : "visible",
+                  pointerEvents: hidden ? "none" : "auto",
                   background: "none",
                   border: "none",
                   padding: 0,
@@ -127,7 +144,7 @@ export default function Services() {
         </div>
 
         <Reveal>
-          <div className="flex items-center justify-center gap-6 mt-12">
+          <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8 sm:mt-12">
             <button
               type="button"
               onClick={() => go(active - 1)}
@@ -139,7 +156,7 @@ export default function Services() {
               </svg>
             </button>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap max-w-[60vw] sm:max-w-none">
               {visible.map((_, i) => (
                 <button
                   key={i}

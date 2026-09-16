@@ -93,33 +93,33 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 bg-dark-bg">
+    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 bg-dark-bg overflow-hidden">
       <div
         ref={sectionRef}
-        className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16"
+        className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16"
       >
-        <div className="space-y-8">
-          <div>
-            <span className="contact-reveal text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+        <div className="space-y-6 sm:space-y-8 min-w-0">
+          <div className="px-1">
+            <span className="contact-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
               Get In Touch
             </span>
-            <h2 className="contact-reveal text-4xl md:text-5xl font-bold text-warm-white mt-4">
+            <h2 className="contact-reveal text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
               Let&apos;s Create
               <br />
               Your Story
             </h2>
-            <p className="contact-reveal text-muted-text text-lg mt-4">
+            <p className="contact-reveal text-muted-text text-base sm:text-lg mt-3 sm:mt-4">
               Whether you&apos;re planning your dream wedding or your newborn&apos;s
               first session — we&apos;re here to help you take the next step.
             </p>
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-4 sm:space-y-5">
             <a
               href={`tel:${studio.phoneRaw}`}
-              className="contact-reveal flex items-center gap-4 group"
+              className="contact-reveal flex items-center gap-4 group min-w-0"
             >
-              <div className="metal-chip w-12 h-12 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
+              <div className="metal-chip w-12 h-12 rounded-xl flex flex-shrink-0 items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -134,14 +134,14 @@ export default function Contact() {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-warm-white font-medium">Phone</p>
-                <p className="text-muted-text">{studio.phone}</p>
+                <p className="text-muted-text break-words">{studio.phone}</p>
               </div>
             </a>
 
-            <div className="contact-reveal flex items-center gap-4 group">
-              <div className="metal-chip w-12 h-12 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
+            <div className="contact-reveal flex items-start sm:items-center gap-4 group min-w-0">
+              <div className="metal-chip w-12 h-12 rounded-xl flex flex-shrink-0 items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -162,17 +162,17 @@ export default function Contact() {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-warm-white font-medium">Studio</p>
-                <p className="text-muted-text">
+                <p className="text-muted-text text-sm sm:text-base leading-relaxed">
                   Shop Number 8, 1st Floor, TJ Shopping Mall, Mine SBI Circle,
                   Gandhi Nagar, Kurnool 518001
                 </p>
               </div>
             </div>
 
-            <div className="contact-reveal flex items-center gap-4 group">
-              <div className="metal-chip w-12 h-12 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
+            <div className="contact-reveal flex items-start sm:items-center gap-4 group min-w-0">
+              <div className="metal-chip w-12 h-12 rounded-xl flex flex-shrink-0 items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -187,9 +187,9 @@ export default function Contact() {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-warm-white font-medium">Hours</p>
-                <p className="text-muted-text">
+                <p className="text-muted-text text-sm sm:text-base break-words">
                   {studio.hours} · Serving {studio.areasServed}
                 </p>
               </div>
@@ -200,20 +200,20 @@ export default function Contact() {
             <p className="text-warm-white font-medium text-sm">
               Book Instantly
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-3 sm:gap-4">
               <a
                 href={`https://wa.me/${studio.phoneRaw}?text=${encodeURIComponent(
                   "Hi Passion Photography, I'd like to inquire about booking."
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full bg-[#25D366] text-white text-sm font-semibold hover:bg-[#20ba5a] transition-all hover:scale-105 active:scale-95"
+                className="px-5 py-3 rounded-full bg-[#25D366] text-white text-sm font-semibold text-center hover:bg-[#20ba5a] transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center"
               >
                 WhatsApp Booking
               </a>
               <a
                 href={`tel:${studio.phoneRaw}`}
-                className="px-5 py-2.5 rounded-full border border-gold/20 text-gold text-sm hover:bg-gold/10 transition-all hover:scale-105 active:scale-95"
+                className="px-5 py-3 rounded-full border border-gold/20 text-gold text-sm text-center hover:bg-gold/10 transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center"
               >
                 Call Us
               </a>
@@ -221,7 +221,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="contact-reveal p-8 rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent">
+        <div className="contact-reveal p-5 sm:p-8 rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent min-w-0">
           <h3 className="text-xl font-bold text-warm-white mb-6">
             Send Us a Message
           </h3>
@@ -253,7 +253,7 @@ export default function Contact() {
               </select>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
               <div>
                 <label className="block text-sm text-muted-text mb-2">
                   Your Name

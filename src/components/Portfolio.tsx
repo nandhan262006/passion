@@ -222,27 +222,27 @@ export default function Portfolio() {
   );
 
   return (
-    <section id="portfolio" className="py-24 bg-dark-bg">
+    <section id="portfolio" className="py-16 sm:py-24 bg-dark-bg overflow-hidden">
       <div ref={sectionRef}>
-        <div className="text-center mb-12 px-6">
-          <span className="portfolio-header text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+        <div className="text-center mb-8 sm:mb-12 px-4 sm:px-6">
+          <span className="portfolio-header text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
             Our Work
           </span>
-          <h2 className="portfolio-header text-4xl md:text-5xl font-bold text-warm-white mt-4">
+          <h2 className="portfolio-header text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
             Portfolios
           </h2>
-          <p className="portfolio-header text-muted-text text-lg mt-4 max-w-2xl mx-auto">
+          <p className="portfolio-header text-muted-text text-base sm:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto">
             From intimate newborn sessions to grand weddings — explore the full
             spectrum of our craft across Kurnool and nearby areas.
           </p>
         </div>
 
-        <div className="portfolio-header flex flex-wrap justify-center gap-3 mb-12 px-6">
+        <div className="portfolio-header flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-4 sm:px-6">
           {categories.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveFilter(tab)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[13px] sm:text-sm font-medium transition-all duration-300 min-h-[40px] ${
                 activeFilter === tab
                   ? "bg-gold text-dark-bg scale-105"
                   : "border border-warm-white/15 text-muted-text hover:border-gold/40 hover:text-gold"
@@ -260,7 +260,7 @@ export default function Portfolio() {
           {filtered.map((item, i) => renderCard(item, i, false))}
         </div>
 
-        <div ref={mobileGridRef} className="md:hidden flex gap-2 px-2 items-start">
+        <div ref={mobileGridRef} className="md:hidden flex gap-2 px-3 items-start">
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             {filtered.map((item, i) =>
               i % 2 === 0 ? renderCard(item, i, true) : null
@@ -276,14 +276,14 @@ export default function Portfolio() {
 
       {lightbox !== null && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 safe-pb"
           onClick={closeLightbox}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           <button
             onClick={closeLightbox}
-            className="absolute top-6 right-6 z-[110] w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[110] w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
             aria-label="Close"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -296,7 +296,7 @@ export default function Portfolio() {
               e.stopPropagation();
               setLightbox((lightbox - 1 + filtered.length) % filtered.length);
             }}
-            className="absolute left-4 md:left-8 z-[110] w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
+            className="absolute left-2 sm:left-4 md:left-8 z-[110] w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
             aria-label="Previous"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -305,20 +305,20 @@ export default function Portfolio() {
           </button>
 
           <div
-            className="relative max-w-4xl max-h-[85vh] mx-16"
+            className="relative w-full max-w-4xl max-h-[82dvh] mx-10 sm:mx-16 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- intrinsic containment sizing, no fixed dims */}
             <img
               src={filtered[lightbox].image}
               alt={filtered[lightbox].title}
-              className="max-w-full max-h-[80vh] object-contain rounded-lg"
+              className="max-w-full max-h-[70dvh] sm:max-h-[80vh] w-auto h-auto object-contain rounded-lg"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent rounded-b-lg p-5">
-              <p className="text-white font-semibold text-lg">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent rounded-b-lg p-4 sm:p-5">
+              <p className="text-white font-semibold text-base sm:text-lg">
                 {filtered[lightbox].title}
               </p>
-              <p className="text-white/60 text-sm">
+              <p className="text-white/60 text-xs sm:text-sm">
                 {filtered[lightbox].category}
               </p>
             </div>
@@ -329,7 +329,7 @@ export default function Portfolio() {
               e.stopPropagation();
               setLightbox((lightbox + 1) % filtered.length);
             }}
-            className="absolute right-4 md:right-8 z-[110] w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
+            className="absolute right-2 sm:right-4 md:right-8 z-[110] w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
             aria-label="Next"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

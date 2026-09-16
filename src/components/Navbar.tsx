@@ -40,7 +40,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         <a href="#home" className="flex items-center select-none">
           <Image
             src="/logo.png"
@@ -88,8 +88,9 @@ export default function Navbar() {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-warm-white focus:outline-none"
+          className="lg:hidden text-warm-white focus:outline-none p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
           <div className="space-y-1.5">
             <span
@@ -113,11 +114,11 @@ export default function Navbar() {
 
       <div
         className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[calc(100dvh-64px)] overflow-y-auto opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="bg-dark-bg/98 backdrop-blur-xl border-t border-gold/10">
-          <div className="flex flex-col items-center gap-6 py-10">
+          <div className="flex flex-col items-center gap-6 py-8 px-4 safe-pb">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -132,18 +133,18 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <div className="flex flex-col gap-4 mt-4 w-full px-8">
+            <div className="flex flex-col gap-3 mt-2 w-full max-w-xs px-2">
               <a
                 href="#portfolio"
                 onClick={() => setIsOpen(false)}
-                className="btn-silver py-3 text-center text-sm font-semibold rounded-full transition-all"
+                className="btn-silver py-3.5 text-center text-sm font-semibold rounded-full transition-all"
               >
                 Explore Portfolio
               </a>
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="btn-silver-outline py-3 text-center text-sm font-semibold rounded-full transition-all"
+                className="btn-silver-outline py-3.5 text-center text-sm font-semibold rounded-full transition-all"
               >
                 Book Now
               </a>

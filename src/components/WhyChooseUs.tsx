@@ -77,35 +77,35 @@ export default function WhyChooseUs() {
   }, []);
 
   return (
-    <section className="py-24 px-6 bg-dark-bg">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 bg-dark-bg overflow-hidden">
       <div ref={sectionRef} className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="why-reveal text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+        <div className="text-center mb-10 sm:mb-16 px-2">
+          <span className="why-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
             Our Promise
           </span>
-          <h2 className="why-reveal text-4xl md:text-5xl font-bold text-warm-white mt-4">
+          <h2 className="why-reveal text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
             Why Choose Passion Photography
           </h2>
-          <p className="why-reveal text-muted-text text-lg mt-4 max-w-2xl mx-auto">
+          <p className="why-reveal text-muted-text text-base sm:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto">
             We don&apos;t just take photos. We create visual prestige that
             stands the test of time.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-8">
           {reasons.map((reason, i) => (
             <div
               key={i}
-              className="why-reveal flex gap-6 p-8 rounded-2xl border border-gold/10 hover:border-gold/30 bg-gradient-to-br from-gold/5 to-transparent transition-all duration-500 group cursor-default"
+              className="why-reveal flex gap-4 sm:gap-6 p-5 sm:p-8 rounded-2xl border border-gold/10 hover:border-gold/30 bg-gradient-to-br from-gold/5 to-transparent transition-all duration-500 group cursor-default min-w-0"
             >
-              <div className="metal-chip flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-500">
+              <div className="metal-chip flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-500">
                 {reason.icon}
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-warm-white mb-2 group-hover:text-gold-light transition-colors duration-300">
+              <div className="min-w-0">
+                <h3 className="text-lg sm:text-xl font-bold text-warm-white mb-1.5 sm:mb-2 group-hover:text-gold-light transition-colors duration-300">
                   {reason.title}
                 </h3>
-                <p className="text-muted-text leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-text leading-relaxed">
                   {reason.description}
                 </p>
               </div>
