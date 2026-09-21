@@ -82,14 +82,14 @@ export default function Carousel() {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-dark-bg via-deep-teal/5 to-dark-bg overflow-hidden">
-      <div ref={sectionRef} className="max-w-7xl mx-auto px-6">
-        <div className="carousel-reveal flex items-end justify-between mb-12">
-          <div>
-            <span className="text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+    <section className="py-16 sm:py-24 bg-gradient-to-b from-dark-bg via-deep-teal/5 to-dark-bg overflow-hidden">
+      <div ref={sectionRef} className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="carousel-reveal flex items-end justify-between gap-4 mb-8 sm:mb-12">
+          <div className="min-w-0">
+            <span className="text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
               Our Craft
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-warm-white mt-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
               The Passion Touch
             </h2>
           </div>
@@ -138,21 +138,21 @@ export default function Carousel() {
 
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto px-6 pb-4 snap-x snap-mandatory scroll-smooth"
+        className="flex gap-4 sm:gap-6 overflow-x-auto px-4 sm:px-6 pb-4 snap-x snap-mandatory scroll-smooth"
         style={{ scrollbarWidth: "none" }}
       >
         {highlights.map((item, i) => (
           <div
             key={i}
-            className={`carousel-reveal flex-none w-[320px] md:w-[400px] snap-center rounded-2xl p-8 bg-gradient-to-br ${item.color} border border-gold/10 hover:border-gold/30 transition-all duration-500 hover:scale-[1.02] group cursor-default`}
+            className={`carousel-reveal flex-none w-[78vw] max-w-[320px] sm:max-w-none sm:w-[320px] md:w-[400px] snap-center rounded-2xl p-6 sm:p-8 bg-gradient-to-br ${item.color} border border-gold/10 hover:border-gold/30 transition-all duration-500 hover:scale-[1.02] group cursor-default`}
           >
-            <span className="text-6xl font-bold text-gold/10 group-hover:text-gold/20 transition-colors duration-500">
+            <span className="text-5xl sm:text-6xl font-bold text-gold/10 group-hover:text-gold/20 transition-colors duration-500">
               {item.number}
             </span>
-            <h3 className="text-2xl font-bold text-warm-white mt-4 mb-3 group-hover:text-gold-light transition-colors duration-500">
+            <h3 className="text-xl sm:text-2xl font-bold text-warm-white mt-4 mb-3 group-hover:text-gold-light transition-colors duration-500">
               {item.title}
             </h3>
-            <p className="text-muted-text leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-text leading-relaxed">
               {item.description}
             </p>
           </div>

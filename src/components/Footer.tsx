@@ -56,36 +56,41 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="border-t border-gold/10 bg-dark-bg">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-3 gap-12">
+    <footer ref={footerRef} className="border-t border-gold/10 bg-dark-bg overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid gap-10 sm:gap-12 sm:grid-cols-2 md:grid-cols-3">
           <div className="footer-reveal space-y-4">
             <div className="select-none">
               <Image
-                src="/logo.png"
+                src="/logo-v2.png"
                 alt="Passion Photography"
                 width={80}
                 height={80}
                 className="h-12 w-auto md:h-14 brightness-0 invert"
               />
             </div>
-            <p className="text-muted-text text-sm leading-relaxed">
+            <p className="text-muted-text text-sm leading-relaxed break-words">
               Every frame tells a story — crafted with passion, care, and a
               signature touch. Kurnool&apos;s trusted studio for weddings,
               newborns, portraits and events in Gandhi Nagar and nearby areas.
             </p>
-            <p className="text-xs text-muted-text/70">
-              {studio.address}
-            </p>
-            <p className="text-xs text-muted-text/70">
+            <a
+              href={studio.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-xs text-muted-text/70 leading-relaxed break-words hover:text-gold transition-colors"
+            >
+              {studio.address} · View on Google Maps →
+            </a>
+            <p className="text-xs text-muted-text/70 break-words">
               {studio.hours} · {studio.areasServed}
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 pt-1">
               <a
                 href={`https://wa.me/${studio.phoneRaw}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all hover:scale-110"
+                className="w-11 h-11 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all hover:scale-110 active:scale-95"
                 aria-label="WhatsApp"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -94,7 +99,7 @@ export default function Footer() {
               </a>
               <a
                 href={`tel:${studio.phoneRaw}`}
-                className="w-9 h-9 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all hover:scale-110"
+                className="w-11 h-11 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all hover:scale-110 active:scale-95"
                 aria-label="Call"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,7 +135,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="footer-reveal mt-16 pt-8 border-t border-gold/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="footer-reveal mt-10 sm:mt-16 pt-8 border-t border-gold/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left safe-pb">
           <p className="text-muted-text text-sm">
             © {new Date().getFullYear()} {studio.name}. All rights reserved.
           </p>

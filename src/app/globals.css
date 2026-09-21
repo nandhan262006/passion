@@ -20,6 +20,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Prevent horizontal overflow on mobile — clip instead of hidden to keep position:sticky working */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   background-color: var(--color-dark-bg);
   background-image: radial-gradient(
@@ -29,7 +36,29 @@ body {
   );
   color: var(--color-warm-white);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Media should never overflow its container on small screens */
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+/* Prevent iOS auto-zoom on form fields: keep 16px minimum */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+/* Respect notches / gesture bars */
+.safe-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* ── Brushed chrome typography ─────────────────────────────── */
@@ -168,6 +197,20 @@ main h2 {
 /* Smooth scroll offset for fixed navbar */
 html {
   scroll-padding-top: 80px;
+}
+
+/* Reduce motion for users who prefer it + save mobile battery */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Better disabled button state */

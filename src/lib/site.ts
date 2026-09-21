@@ -16,4 +16,11 @@ export const studio = {
   hours: "Open 24 hours",
   areasServed: "Kurnool and nearby areas",
   instagram: "",
+  mapsUrl: "https://maps.app.goo.gl/RdBd4Nj8Q1ZzcGCNA",
+  mapsEmbedUrl:
+    "https://www.google.com/maps?q=Passion%20Photography%20-%20Wedding%20%26%20Newborn%20Studio%2C%20Gandhi%20Nagar%2C%20Kurnool%2015.833278%2C78.040353&z=17&output=embed",
+  mapsDirectionsUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=Passion+Photography+-+Wedding+%26+Newborn+Studio,+Gandhi+Nagar,+Kurnool+518001",
+  latitude: 15.833278,
+  longitude: 78.040353,
 };

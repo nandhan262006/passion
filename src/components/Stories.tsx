@@ -43,7 +43,7 @@ function TestimonialCard({
   testimonial: (typeof testimonials)[number];
 }) {
   return (
-    <div className="flex-none w-[350px] md:w-[420px] p-8 rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent hover:border-gold/30 transition-all duration-500 group cursor-default snap-center">
+    <div className="flex-none w-[78vw] max-w-[350px] sm:max-w-none sm:w-[350px] md:w-[420px] p-6 sm:p-8 rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent hover:border-gold/30 transition-all duration-500 group cursor-default snap-center">
       <div className="flex gap-1 mb-5">
         {Array.from({ length: testimonial.rating }).map((_, j) => (
           <svg
@@ -57,7 +57,7 @@ function TestimonialCard({
         ))}
       </div>
 
-      <p className="text-muted-text leading-relaxed mb-6 italic group-hover:text-warm-white/80 transition-colors duration-300">
+      <p className="text-sm sm:text-base text-muted-text leading-relaxed mb-6 italic group-hover:text-warm-white/80 transition-colors duration-300">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
@@ -129,16 +129,16 @@ export default function Stories() {
   }, []);
 
   return (
-    <section id="stories" className="py-24 bg-dark-bg overflow-hidden">
-      <div ref={sectionRef} className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="story-reveal text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+    <section id="stories" className="py-16 sm:py-24 bg-dark-bg overflow-hidden">
+      <div ref={sectionRef} className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-16 px-2">
+          <span className="story-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
             Love Stories
           </span>
-          <h2 className="story-reveal text-4xl md:text-5xl font-bold text-warm-white mt-4">
+          <h2 className="story-reveal text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
             Client Stories
           </h2>
-          <p className="story-reveal text-muted-text text-lg mt-4 max-w-2xl mx-auto">
+          <p className="story-reveal text-muted-text text-base sm:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto">
             Every couple and family has a story worth telling. Here&apos;s what
             clients say about the Passion Photography experience.
           </p>
@@ -149,11 +149,13 @@ export default function Stories() {
         className="relative overflow-hidden"
         onMouseEnter={() => (pausedRef.current = true)}
         onMouseLeave={() => (pausedRef.current = false)}
+        onTouchStart={() => (pausedRef.current = true)}
+        onTouchEnd={() => (pausedRef.current = false)}
       >
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-dark-bg to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-dark-bg to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-32 bg-gradient-to-r from-dark-bg to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-32 bg-gradient-to-l from-dark-bg to-transparent z-10 pointer-events-none" />
 
-        <div ref={trackRef} className="flex gap-6 px-6 will-change-transform">
+        <div ref={trackRef} className="flex gap-4 sm:gap-6 px-4 sm:px-6 will-change-transform">
           {testimonials.map((t, i) => (
             <TestimonialCard key={`a-${i}`} testimonial={t} />
           ))}
@@ -163,8 +165,8 @@ export default function Stories() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mt-10 sm:mt-16">
           <p className="text-muted-text text-sm mb-4">See our work on</p>
           <div className="flex justify-center gap-6">
             <a
