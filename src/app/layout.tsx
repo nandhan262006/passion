@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import { siteUrl } from "@/lib/site";
+import { siteUrl, studio } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,8 +25,12 @@ export const metadata: Metadata = {
     "Passion Photography — Kurnool's trusted wedding & newborn studio (5.0 ★, 104 Google reviews). Weddings, newborns, maternity, portraits and events in Kurnool, Andhra Pradesh.",
   applicationName: "Passion Photography",
   icons: {
-    icon: [{ url: "/logo.png", sizes: "any" }],
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     type: "website",
@@ -61,12 +65,49 @@ export default function RootLayout({
 }: {
   children: ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: studio.name,
+    description:
+      "Wedding & newborn photography studio in Kurnool — weddings, newborns, maternity, portraits and events.",
+    url: siteUrl,
+    telephone: `+${studio.phoneRaw}`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress:
+        "Shop Number 8, 1st Floor, TJ Shopping Mall, Mine SBI Circle, opp. SV Complex, Gandhi Nagar",
+      addressLocality: "Kurnool",
+      addressRegion: "Andhra Pradesh",
+      postalCode: "518001",
+      addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: studio.latitude,
+      longitude: studio.longitude,
+    },
+    hasMap: studio.mapsUrl,
+    openingHours: "Mo-Su 00:00-23:59",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: studio.rating,
+      reviewCount: studio.reviews,
+    },
+  };
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

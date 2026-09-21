@@ -164,10 +164,15 @@ export default function Contact() {
               </div>
               <div className="min-w-0">
                 <p className="text-warm-white font-medium">Studio</p>
-                <p className="text-muted-text text-sm sm:text-base leading-relaxed">
+                <a
+                  href={studio.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-text text-sm sm:text-base leading-relaxed hover:text-gold transition-colors"
+                >
                   Shop Number 8, 1st Floor, TJ Shopping Mall, Mine SBI Circle,
                   Gandhi Nagar, Kurnool 518001
-                </p>
+                </a>
               </div>
             </div>
 
@@ -216,6 +221,33 @@ export default function Contact() {
                 className="px-5 py-3 rounded-full border border-gold/20 text-gold text-sm text-center hover:bg-gold/10 transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center"
               >
                 Call Us
+              </a>
+              <a
+                href={studio.mapsDirectionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 rounded-full border border-gold/20 text-gold text-sm text-center hover:bg-gold/10 transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center gap-2"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                  />
+                </svg>
+                Get Directions
               </a>
             </div>
           </div>
@@ -325,6 +357,49 @@ export default function Contact() {
               {submitted ? "✓ Opening WhatsApp…" : "Send via WhatsApp"}
             </button>
           </form>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-10 lg:mt-16">
+        <div className="contact-reveal overflow-hidden rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 sm:px-8 pt-6 pb-4">
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold text-warm-white">
+                Find Us on Google Maps
+              </h3>
+              <p className="text-muted-text text-sm mt-1">
+                {studio.address}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={studio.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-full bg-gold text-dark-bg text-sm font-semibold hover:brightness-110 transition-all hover:scale-105 active:scale-95 min-h-[44px] flex items-center justify-center"
+              >
+                View on Google Maps
+              </a>
+              <a
+                href={studio.mapsDirectionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-full border border-gold/20 text-gold text-sm text-center hover:bg-gold/10 transition-all hover:scale-105 active:scale-95 min-h-[44px] flex items-center justify-center"
+              >
+                Get Directions
+              </a>
+            </div>
+          </div>
+          <div className="relative w-full h-[320px] sm:h-[420px]">
+            <iframe
+              title="Passion Photography studio location on Google Maps"
+              src={studio.mapsEmbedUrl}
+              className="absolute inset-0 w-full h-full border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </div>
     </section>

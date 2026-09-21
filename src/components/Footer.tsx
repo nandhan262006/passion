@@ -62,7 +62,7 @@ export default function Footer() {
           <div className="footer-reveal space-y-4">
             <div className="select-none">
               <Image
-                src="/logo.png"
+                src="/logo-v2.png"
                 alt="Passion Photography"
                 width={80}
                 height={80}
@@ -74,9 +74,14 @@ export default function Footer() {
               signature touch. Kurnool&apos;s trusted studio for weddings,
               newborns, portraits and events in Gandhi Nagar and nearby areas.
             </p>
-            <p className="text-xs text-muted-text/70 leading-relaxed break-words">
-              {studio.address}
-            </p>
+            <a
+              href={studio.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-xs text-muted-text/70 leading-relaxed break-words hover:text-gold transition-colors"
+            >
+              {studio.address} · View on Google Maps →
+            </a>
             <p className="text-xs text-muted-text/70 break-words">
               {studio.hours} · {studio.areasServed}
             </p>
