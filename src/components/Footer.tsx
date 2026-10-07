@@ -56,18 +56,27 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="border-t border-gold/10 bg-dark-bg overflow-hidden">
+    <footer ref={footerRef} className="relative border-t border-gold/20 bg-gradient-to-b from-dark-bg to-[#ece3cf] overflow-hidden">
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="grid gap-10 sm:gap-12 sm:grid-cols-2 md:grid-cols-3">
           <div className="footer-reveal space-y-4">
-            <div className="select-none">
+            <div className="select-none flex items-center gap-3">
               <Image
                 src="/logo-v2.png"
                 alt="Passion Photography"
                 width={80}
                 height={80}
-                className="h-12 w-auto md:h-14 brightness-0 invert"
+                className="h-12 w-auto md:h-14 brightness-0 drop-shadow-[0_2px_10px_rgba(13,74,55,0.25)]"
               />
+              <span className="leading-none">
+                <span className="block font-display italic text-xl text-warm-white">
+                  Passion
+                </span>
+                <span className="block text-[0.62rem] font-bold uppercase tracking-[0.32em] text-gold">
+                  Photography
+                </span>
+              </span>
             </div>
             <p className="text-muted-text text-sm leading-relaxed break-words">
               Every frame tells a story — crafted with passion, care, and a
@@ -78,7 +87,7 @@ export default function Footer() {
               href={studio.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-xs text-muted-text/70 leading-relaxed break-words hover:text-gold transition-colors"
+              className="block text-xs text-muted-text/80 leading-relaxed break-words hover:text-gold-light transition-colors"
             >
               {studio.address} · View on Google Maps →
             </a>
@@ -90,7 +99,7 @@ export default function Footer() {
                 href={`https://wa.me/${studio.phoneRaw}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all hover:scale-110 active:scale-95"
+                className="w-11 h-11 rounded-full border border-gold/30 bg-gold/[0.06] flex items-center justify-center text-gold-light hover:bg-gold/15 hover:shadow-[0_4px_18px_rgba(13,74,55,0.2)] transition-all hover:scale-110 active:scale-95"
                 aria-label="WhatsApp"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -99,7 +108,7 @@ export default function Footer() {
               </a>
               <a
                 href={`tel:${studio.phoneRaw}`}
-                className="w-11 h-11 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all hover:scale-110 active:scale-95"
+                className="w-11 h-11 rounded-full border border-gold/30 bg-gold/[0.06] flex items-center justify-center text-gold-light hover:bg-gold/15 hover:shadow-[0_4px_18px_rgba(13,74,55,0.2)] transition-all hover:scale-110 active:scale-95"
                 aria-label="Call"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,7 +125,7 @@ export default function Footer() {
 
           {footerLinks.map((group) => (
             <div key={group.title} className="footer-reveal">
-              <h4 className="text-warm-white font-semibold mb-4">
+              <h4 className="font-display italic text-gold-light font-medium mb-4 text-lg">
                 {group.title}
               </h4>
               <ul className="space-y-3">
@@ -124,7 +133,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-muted-text text-sm hover:text-gold transition-colors duration-200"
+                      className="text-muted-text text-sm hover:text-gold-light transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -135,20 +144,20 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="footer-reveal mt-10 sm:mt-16 pt-8 border-t border-gold/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left safe-pb">
+        <div className="footer-reveal mt-10 sm:mt-16 pt-8 border-t border-gold/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left safe-pb">
           <p className="text-muted-text text-sm">
-            © {new Date().getFullYear()} {studio.name}. All rights reserved.
+            © {new Date().getFullYear()} {studio.name} · Crafted with passion in Kurnool.
           </p>
           <div className="flex gap-6">
             <a
               href="#"
-              className="text-muted-text text-sm hover:text-gold transition-colors"
+              className="text-muted-text text-sm hover:text-gold-light transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-muted-text text-sm hover:text-gold transition-colors"
+              className="text-muted-text text-sm hover:text-gold-light transition-colors"
             >
               Terms of Service
             </a>

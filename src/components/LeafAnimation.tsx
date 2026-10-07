@@ -5,8 +5,9 @@ import gsap from "gsap";
 
 function createLeafSVG(color: string): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="60" viewBox="0 0 40 60">
-    <path d="M20 0 C30 10, 35 25, 35 40 C35 50, 28 58, 20 60 C12 58, 5 50, 5 40 C5 25, 10 10, 20 0Z" fill="${color}" opacity="0.5"/>
-    <path d="M20 10 L20 55" stroke="${color}" stroke-width="0.5" opacity="0.3"/>
+    <path d="M20 0 C30 10, 35 25, 35 40 C35 50, 28 58, 20 60 C12 58, 5 50, 5 40 C5 25, 10 10, 20 0Z" fill="${color}" opacity="0.55"/>
+    <path d="M20 10 L20 55" stroke="${color}" stroke-width="0.5" opacity="0.35"/>
+    <ellipse cx="20" cy="30" rx="4" ry="12" fill="#fff6e9" opacity="0.12"/>
   </svg>`;
 }
 
@@ -21,7 +22,7 @@ export default function LeafAnimation() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const isMobile = window.matchMedia("(max-width: 640px)").matches;
-    const colors = ["#2e2e2e", "#6f6f6f", "#b8b8b8"];
+    const colors = ["#0d4a37", "#b08a3c", "#7fa08e", "#e7ddc4"];
     const leafCount = isMobile ? 6 : 12;
 
     for (let i = 0; i < leafCount; i++) {

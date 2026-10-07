@@ -93,22 +93,31 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 bg-dark-bg overflow-hidden">
+    <section id="contact" className="relative py-16 sm:py-24 px-4 sm:px-6 bg-dark-bg overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="ember-orb left-1/2 top-[2%] h-[300px] w-[620px] -translate-x-1/2"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(13,74,55,0.07), transparent)",
+        }}
+      />
       <div
         ref={sectionRef}
-        className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16"
+        className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16"
       >
         <div className="space-y-6 sm:space-y-8 min-w-0">
           <div className="px-1">
-            <span className="contact-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
+            <span className="contact-reveal eyebrow">
               Get In Touch
             </span>
-            <h2 className="contact-reveal text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
+            <h2 className="contact-reveal font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-warm-white mt-5 text-balance">
               Let&apos;s Create
               <br />
-              Your Story
+              <span className="italic text-gold-light">Your Story</span>
             </h2>
-            <p className="contact-reveal text-muted-text text-base sm:text-lg mt-3 sm:mt-4">
+            <div className="ember-divider mt-5 w-36" />
+            <p className="contact-reveal text-muted-text text-base sm:text-lg mt-4">
               Whether you&apos;re planning your dream wedding or your newborn&apos;s
               first session — we&apos;re here to help you take the next step.
             </p>
@@ -201,8 +210,8 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="contact-reveal pt-6 border-t border-gold/10 space-y-4">
-            <p className="text-warm-white font-medium text-sm">
+          <div className="contact-reveal pt-6 border-t border-gold/25 space-y-4">
+            <p className="text-warm-white font-medium text-sm uppercase tracking-[0.2em]">
               Book Instantly
             </p>
             <div className="flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-3 sm:gap-4">
@@ -218,7 +227,7 @@ export default function Contact() {
               </a>
               <a
                 href={`tel:${studio.phoneRaw}`}
-                className="px-5 py-3 rounded-full border border-gold/20 text-gold text-sm text-center hover:bg-gold/10 transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center"
+                className="px-5 py-3 rounded-full border border-gold/30 bg-gold/[0.06] text-gold-light text-sm text-center hover:bg-gold/15 hover:shadow-[0_4px_18px_rgba(13,74,55,0.2)] transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center"
               >
                 Call Us
               </a>
@@ -226,7 +235,7 @@ export default function Contact() {
                 href={studio.mapsDirectionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-full border border-gold/20 text-gold text-sm text-center hover:bg-gold/10 transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center gap-2"
+                className="px-5 py-3 rounded-full border border-gold/30 bg-gold/[0.06] text-gold-light text-sm text-center hover:bg-gold/15 hover:shadow-[0_4px_18px_rgba(13,74,55,0.2)] transition-all hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center gap-2"
               >
                 <svg
                   className="w-4 h-4"
@@ -253,9 +262,9 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="contact-reveal p-5 sm:p-8 rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent min-w-0">
-          <h3 className="text-xl font-bold text-warm-white mb-6">
-            Send Us a Message
+        <div className="contact-reveal card-luxe p-5 sm:p-8 rounded-2xl min-w-0">
+          <h3 className="font-display text-xl font-medium text-warm-white mb-6">
+            Send Us a <span className="italic text-gold-light">Message</span>
           </h3>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -267,7 +276,7 @@ export default function Contact() {
                 value={formData.purpose}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/20 text-warm-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-dark-bg/80 border border-gold/25 text-warm-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/40 focus:shadow-[0_0_0_3px_rgba(13,74,55,0.15)] transition-all"
               >
                 <option value="">Select your purpose</option>
                 <option value="wedding">
@@ -296,7 +305,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/20 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/25 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all"
                   placeholder="Your name"
                 />
               </div>
@@ -310,7 +319,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/20 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/25 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all"
                   placeholder="you@email.com"
                 />
               </div>
@@ -325,7 +334,7 @@ export default function Contact() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/20 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/25 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all"
                 placeholder="+91 XXXXX XXXXX"
               />
             </div>
@@ -340,7 +349,7 @@ export default function Contact() {
                 onChange={handleChange}
                 rows={4}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/20 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-gold/25 text-warm-white placeholder-warm-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all resize-none"
                 placeholder="Tell us about your event or what you'd like to learn..."
               />
             </div>
@@ -360,11 +369,11 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-10 lg:mt-16">
-        <div className="contact-reveal overflow-hidden rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent">
+      <div className="relative max-w-7xl mx-auto mt-10 lg:mt-16">
+        <div className="contact-reveal card-luxe overflow-hidden rounded-2xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 sm:px-8 pt-6 pb-4">
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-warm-white">
+              <h3 className="font-display text-lg sm:text-xl font-medium text-warm-white">
                 Find Us on Google Maps
               </h3>
               <p className="text-muted-text text-sm mt-1">
@@ -376,7 +385,7 @@ export default function Contact() {
                 href={studio.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full bg-gold text-dark-bg text-sm font-semibold hover:brightness-110 transition-all hover:scale-105 active:scale-95 min-h-[44px] flex items-center justify-center"
+                className="btn-silver px-5 py-2.5 rounded-full text-sm font-semibold transition-all hover:scale-105 active:scale-95 min-h-[44px] flex items-center justify-center"
               >
                 View on Google Maps
               </a>
@@ -384,7 +393,7 @@ export default function Contact() {
                 href={studio.mapsDirectionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full border border-gold/20 text-gold text-sm text-center hover:bg-gold/10 transition-all hover:scale-105 active:scale-95 min-h-[44px] flex items-center justify-center"
+                className="px-5 py-2.5 rounded-full border border-gold/30 bg-gold/[0.06] text-gold-light text-sm text-center hover:bg-gold/15 transition-all hover:scale-105 active:scale-95 min-h-[44px] flex items-center justify-center"
               >
                 Get Directions
               </a>

@@ -75,17 +75,26 @@ export default function Cinematics() {
   }, []);
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 bg-dark-bg overflow-hidden">
-      <div ref={sectionRef} className="max-w-7xl mx-auto">
+    <section className="relative py-16 sm:py-24 px-4 sm:px-6 bg-dark-bg overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="ember-orb left-1/2 top-[4%] h-[300px] w-[600px] -translate-x-1/2"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(176,138,60,0.12), transparent)",
+        }}
+      />
+      <div ref={sectionRef} className="relative max-w-7xl mx-auto">
         <div className="text-center mb-10 sm:mb-16 px-2">
-          <span className="cine-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
+          <span className="cine-reveal eyebrow">
             Signature Shots
           </span>
-          <h2 className="cine-reveal text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
+          <h2 className="cine-reveal font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-warm-white mt-5 text-balance">
             Our{" "}
-            <span className="italic text-gold">Highlights</span>
+            <span className="italic text-gold-light">Highlights</span>
           </h2>
-          <p className="cine-reveal text-muted-text text-base sm:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto">
+          <div className="ember-divider mx-auto mt-5 w-44" />
+          <p className="cine-reveal text-muted-text text-base sm:text-lg mt-4 max-w-2xl mx-auto">
             Every session deserves a story. Watch how we turn weddings and
             newborn moments into frames you&apos;ll love forever.
           </p>
@@ -95,7 +104,7 @@ export default function Cinematics() {
           {reels.map((reel, i) => (
             <div
               key={reel.src}
-              className="cine-reveal relative rounded-2xl overflow-hidden bg-black border border-gold/10 aspect-[16/9]"
+              className="cine-reveal group relative rounded-2xl overflow-hidden bg-black border border-gold/25 aspect-[16/9] shadow-[0_20px_50px_rgba(18,41,31,0.18)] hover:border-gold/50 hover:shadow-[0_12px_40px_rgba(13,74,55,0.2)] transition-all duration-500"
               style={{ containerType: "inline-size" }}
             >
               <video
@@ -118,9 +127,10 @@ export default function Cinematics() {
                   transform: "translate(-50%, -50%) rotate(-90deg)",
                 }}
               />
-              <span className="absolute top-4 left-4 z-10 bg-gold/90 text-dark-bg text-[0.65rem] font-bold px-3 py-1 rounded-full uppercase tracking-wider pointer-events-none">
+              <span className="absolute top-4 left-4 z-10 bg-gradient-to-r from-gold-light via-gold to-ember text-[#f7f4ec] text-[0.65rem] font-bold px-3 py-1 rounded-full uppercase tracking-wider pointer-events-none shadow-[0_2px_12px_rgba(13,74,55,0.35)]">
                 {reel.label}
               </span>
+              <span className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-ember/15 via-transparent to-gold/10 opacity-70" />
             </div>
           ))}
         </div>

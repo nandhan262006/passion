@@ -40,20 +40,29 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-16 sm:py-24 bg-dark-bg overflow-hidden"
+      className="relative py-16 sm:py-24 bg-dark-bg overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+      <div
+        aria-hidden="true"
+        className="ember-orb left-1/2 top-0 h-[280px] w-[560px] -translate-x-1/2"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(13,74,55,0.07), transparent)",
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         <Reveal>
           <div className="text-center px-2">
-            <p className="text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
+            <p className="eyebrow">
               What We Offer
             </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-warm-white mt-5 text-balance">
               Tailored{" "}
-              <span className="italic text-gold">Experiences</span>
+              <span className="italic text-gold-light">Experiences</span>
             </h2>
+            <div className="ember-divider mx-auto mt-5 w-44" />
           </div>
         </Reveal>
 
@@ -114,9 +123,9 @@ export default function Services() {
                 }}
               >
                 <div
-                  className="relative w-full h-full overflow-hidden rounded-2xl"
+                  className="relative w-full h-full overflow-hidden rounded-2xl border border-gold/20"
                   style={{
-                    boxShadow: "0 25px 50px rgba(0,0,0,0.4)",
+                    boxShadow: "0 25px 50px rgba(18,41,31,0.22)",
                   }}
                 >
                   <Image
@@ -124,16 +133,17 @@ export default function Services() {
                     alt={service.title}
                     fill
                     sizes="(max-width: 768px) 65vw, 400px"
-                    className="w-full h-full object-cover block"
+                    className="w-full h-full object-cover block saturate-[1.1]"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a241b]/90 via-[#0a241b]/25 to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-gold/10 to-transparent opacity-60" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7 text-left">
-                    <span className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/50">
+                    <span className="inline-block rounded-full border border-gold/30 bg-dark-bg/60 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-gold-light backdrop-blur-sm">
                       {service.category}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-bold text-white mt-2">
+                    <h3 className="font-display text-xl md:text-2xl font-medium text-white mt-2 drop-shadow-lg">
                       {service.title}
                     </h3>
                   </div>
@@ -149,7 +159,7 @@ export default function Services() {
               type="button"
               onClick={() => go(active - 1)}
               aria-label="Previous"
-              className="w-11 h-11 rounded-full border border-gold/20 bg-transparent flex items-center justify-center text-warm-white/70 hover:border-gold hover:text-gold transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-gold/30 bg-gold/[0.06] flex items-center justify-center text-gold-light hover:border-gold hover:bg-gold/15 hover:shadow-[0_4px_18px_rgba(13,74,55,0.18)] transition-all duration-300"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
                 <path d="M15 18l-6-6 6-6" />
@@ -169,8 +179,12 @@ export default function Services() {
                     width: i === active ? 32 : 8,
                     background:
                       i === active
-                        ? "#E5E5E5"
-                        : "rgba(184,184,184,0.25)",
+                        ? "linear-gradient(90deg, #14604a, #083325)"
+                        : "rgba(13,74,55,0.22)",
+                    boxShadow:
+                      i === active
+                        ? "0 2px 12px rgba(13,74,55,0.4)"
+                        : "none",
                   }}
                 />
               ))}
@@ -180,7 +194,7 @@ export default function Services() {
               type="button"
               onClick={() => go(active + 1)}
               aria-label="Next"
-              className="w-11 h-11 rounded-full border border-gold/20 bg-transparent flex items-center justify-center text-warm-white/70 hover:border-gold hover:text-gold transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-gold/30 bg-gold/[0.06] flex items-center justify-center text-gold-light hover:border-gold hover:bg-gold/15 hover:shadow-[0_4px_18px_rgba(13,74,55,0.18)] transition-all duration-300"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
                 <path d="M9 18l6-6-6-6" />

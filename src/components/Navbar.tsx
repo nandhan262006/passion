@@ -36,20 +36,29 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-dark-bg/95 backdrop-blur-lg border-b border-gold/10"
-          : "bg-transparent"
+          ? "bg-dark-bg/90 backdrop-blur-xl border-b border-gold/20 shadow-[0_8px_30px_rgba(18,41,31,0.08)]"
+          : "bg-gradient-to-b from-dark-bg/70 to-transparent"
       }`}
     >
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-gold/70 to-transparent opacity-80" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-        <a href="#home" className="flex items-center select-none">
+        <a href="#home" className="flex items-center gap-3 select-none group">
           <Image
             src="/logo-v2.png"
             alt="Passion Photography"
             width={80}
             height={80}
             priority
-            className="h-10 w-auto md:h-12 brightness-0 invert"
+            className="h-10 w-auto md:h-12 brightness-0 drop-shadow-[0_2px_10px_rgba(13,74,55,0.25)] group-hover:drop-shadow-[0_2px_14px_rgba(13,74,55,0.4)] transition-all"
           />
+          <span className="hidden sm:block leading-none">
+            <span className="block font-display italic text-lg text-warm-white">
+              Passion
+            </span>
+            <span className="block text-[0.6rem] font-bold uppercase tracking-[0.32em] text-gold/90">
+              Photography
+            </span>
+          </span>
         </a>
 
         <div className="hidden lg:flex items-center gap-8">
@@ -60,12 +69,12 @@ export default function Navbar() {
               className={`relative text-sm font-medium tracking-wide uppercase transition-colors duration-300 ${
                 activeSection === link.href.slice(1)
                   ? "text-gold"
-                  : "text-warm-white/70 hover:text-gold"
+                  : "text-warm-white/70 hover:text-gold-light"
               }`}
             >
               {link.name}
               {activeSection === link.href.slice(1) && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold rounded-full" />
+                <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] rounded-full bg-gradient-to-r from-gold-light via-gold to-ember shadow-[0_1px_8px_rgba(13,74,55,0.35)]" />
               )}
             </a>
           ))}

@@ -12,35 +12,35 @@ const highlights = [
     title: "Golden Hour Magic",
     description:
       "We chase the light. Our signature golden hour shots capture that ethereal warmth that makes every frame feel like a painting.",
-    color: "from-gold/20 to-gold/5",
+    color: "from-gold/25 via-ember/10 to-transparent",
   },
   {
     number: "02",
     title: "Tender Newborn Frames",
     description:
       "Newborn sessions are our specialty — safe, calm, and oh-so-soft. Tiny hands, tiny toes, and the quietest moments of new parenthood.",
-    color: "from-deep-teal/20 to-accent/5",
+    color: "from-peacock/60 via-secondary-teal/30 to-transparent",
   },
   {
     number: "03",
     title: "Raw Emotions",
     description:
       "The stolen glances, the happy tears, the unscripted laughter — we live for the moments you didn't know were happening.",
-    color: "from-gold/15 to-deep-teal/10",
+    color: "from-ember/20 via-gold/10 to-transparent",
   },
   {
     number: "04",
     title: "All Occasions, One Studio",
     description:
       "From intimate newborn and maternity shoots to grand weddings and cultural events — one trusted studio for every celebration.",
-    color: "from-accent/15 to-gold/10",
+    color: "from-blush/15 via-gold/10 to-transparent",
   },
   {
     number: "05",
     title: "Heirloom Quality",
     description:
       "Your moments become family heirlooms — documented with the care, color, and reverence they truly deserve.",
-    color: "from-deep-teal/15 to-gold/5",
+    color: "from-secondary-teal/50 via-ember/10 to-transparent",
   },
 ];
 
@@ -82,21 +82,30 @@ export default function Carousel() {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-dark-bg via-deep-teal/5 to-dark-bg overflow-hidden">
-      <div ref={sectionRef} className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-dark-bg via-peacock-deep/60 to-dark-bg overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="ember-orb left-[8%] top-[12%] h-[260px] w-[260px]"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(13,74,55,0.07), transparent)",
+        }}
+      />
+      <div ref={sectionRef} className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="carousel-reveal flex items-end justify-between gap-4 mb-8 sm:mb-12">
           <div className="min-w-0">
-            <span className="text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
+            <span className="eyebrow">
               Our Craft
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-warm-white mt-5 text-balance">
               The Passion Touch
             </h2>
+            <div className="ember-divider mt-4 w-32" />
           </div>
           <div className="hidden md:flex gap-3">
             <button
               onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 hover:border-gold/40 transition-all duration-300 active:scale-90"
+              className="w-12 h-12 rounded-full border border-gold/30 bg-gold/[0.06] flex items-center justify-center text-gold-light hover:bg-gold/15 hover:border-gold hover:shadow-[0_8px_28px_rgba(13,74,55,0.18)] transition-all duration-300 active:scale-90"
               aria-label="Scroll left"
             >
               <svg
@@ -115,7 +124,7 @@ export default function Carousel() {
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 hover:border-gold/40 transition-all duration-300 active:scale-90"
+              className="w-12 h-12 rounded-full border border-gold/30 bg-gold/[0.06] flex items-center justify-center text-gold-light hover:bg-gold/15 hover:border-gold hover:shadow-[0_8px_28px_rgba(13,74,55,0.18)] transition-all duration-300 active:scale-90"
               aria-label="Scroll right"
             >
               <svg
@@ -144,12 +153,12 @@ export default function Carousel() {
         {highlights.map((item, i) => (
           <div
             key={i}
-            className={`carousel-reveal flex-none w-[78vw] max-w-[320px] sm:max-w-none sm:w-[320px] md:w-[400px] snap-center rounded-2xl p-6 sm:p-8 bg-gradient-to-br ${item.color} border border-gold/10 hover:border-gold/30 transition-all duration-500 hover:scale-[1.02] group cursor-default`}
+            className={`carousel-reveal card-luxe flex-none w-[78vw] max-w-[320px] sm:max-w-none sm:w-[320px] md:w-[400px] snap-center rounded-2xl p-6 sm:p-8 bg-gradient-to-br ${item.color} hover:scale-[1.02] transition-all duration-500 hover:shadow-[0_12px_34px_rgba(13,74,55,0.14)] group cursor-default`}
           >
-            <span className="text-5xl sm:text-6xl font-bold text-gold/10 group-hover:text-gold/20 transition-colors duration-500">
+            <span className="font-display text-5xl sm:text-6xl font-semibold text-transparent bg-clip-text bg-gradient-to-b from-gold-light/50 to-ember/20 group-hover:from-gold-light/80 group-hover:to-ember/40 transition-all duration-500">
               {item.number}
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-warm-white mt-4 mb-3 group-hover:text-gold-light transition-colors duration-500">
+            <h3 className="font-display text-xl sm:text-2xl font-medium text-warm-white mt-4 mb-3 group-hover:text-gold-light transition-colors duration-500">
               {item.title}
             </h3>
             <p className="text-sm sm:text-base text-muted-text leading-relaxed">

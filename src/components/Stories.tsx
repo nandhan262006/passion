@@ -43,12 +43,12 @@ function TestimonialCard({
   testimonial: (typeof testimonials)[number];
 }) {
   return (
-    <div className="flex-none w-[78vw] max-w-[350px] sm:max-w-none sm:w-[350px] md:w-[420px] p-6 sm:p-8 rounded-2xl border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent hover:border-gold/30 transition-all duration-500 group cursor-default snap-center">
+    <div className="card-luxe flex-none w-[78vw] max-w-[350px] sm:max-w-none sm:w-[350px] md:w-[420px] p-6 sm:p-8 rounded-2xl transition-all duration-500 group cursor-default snap-center">
       <div className="flex gap-1 mb-5">
         {Array.from({ length: testimonial.rating }).map((_, j) => (
           <svg
             key={j}
-            className="w-4 h-4 text-gold"
+            className="w-4 h-4 text-gold drop-shadow-[0_1px_4px_rgba(13,74,55,0.3)]"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -57,12 +57,12 @@ function TestimonialCard({
         ))}
       </div>
 
-      <p className="text-sm sm:text-base text-muted-text leading-relaxed mb-6 italic group-hover:text-warm-white/80 transition-colors duration-300">
+      <p className="font-display text-base sm:text-lg text-warm-white/85 leading-relaxed mb-6 italic group-hover:text-warm-white transition-colors duration-300">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
       <div className="flex items-center gap-4">
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-dark-bg font-bold text-sm group-hover:scale-110 transition-transform duration-300">
+        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold-light via-gold to-ember flex items-center justify-center text-[#f7f4ec] font-bold text-sm group-hover:scale-110 group-hover:shadow-[0_4px_16px_rgba(13,74,55,0.35)] transition-all duration-300">
           {testimonial.name
             .split(" ")
             .map((n) => n[0])
@@ -70,7 +70,7 @@ function TestimonialCard({
         </div>
         <div>
           <p className="font-semibold text-warm-white">{testimonial.name}</p>
-          <p className="text-muted-text text-sm">{testimonial.role}</p>
+          <p className="text-gold-light/70 text-sm">{testimonial.role}</p>
         </div>
       </div>
     </div>
@@ -129,16 +129,25 @@ export default function Stories() {
   }, []);
 
   return (
-    <section id="stories" className="py-16 sm:py-24 bg-dark-bg overflow-hidden">
-      <div ref={sectionRef} className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="stories" className="relative py-16 sm:py-24 bg-dark-bg overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="ember-orb left-1/2 top-[10%] h-[240px] w-[520px] -translate-x-1/2"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(176,138,60,0.1), transparent)",
+        }}
+      />
+      <div ref={sectionRef} className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10 sm:mb-16 px-2">
-          <span className="story-reveal text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
+          <span className="story-reveal eyebrow">
             Love Stories
           </span>
-          <h2 className="story-reveal text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
+          <h2 className="story-reveal font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-warm-white mt-5 text-balance">
             Client Stories
           </h2>
-          <p className="story-reveal text-muted-text text-base sm:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto">
+          <div className="ember-divider mx-auto mt-5 w-40" />
+          <p className="story-reveal text-muted-text text-base sm:text-lg mt-4 max-w-2xl mx-auto">
             Every couple and family has a story worth telling. Here&apos;s what
             clients say about the Passion Photography experience.
           </p>

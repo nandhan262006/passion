@@ -1,176 +1,190 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
+import * as React from "react";
+import { motion } from "motion/react";
 
-const GRID_IMAGES = [
-  "/images/about.jpg",
-  "/images/gallery-02.jpg",
-  "/images/gallery-03.jpg",
-  "/images/gallery-04.jpg",
-  "/images/gallery-05.jpg",
-  "/images/gallery-06.jpg",
-  "/images/gallery-07.jpg",
-  "/images/gallery-08.jpg",
-  "/images/gallery-09.jpg",
-  "/images/gallery-10.jpg",
-  "/images/gallery-11.jpg",
-  "/images/gallery-12.jpg",
-  "/images/gallery-13.jpg",
-  "/images/gallery-14.jpg",
-  "/images/gallery-15.jpg",
-  "/images/gallery-16.jpg",
-  "/images/gallery-17.jpg",
-  "/images/gallery-18.jpg",
-  "/images/gallery-19.jpg",
-  "/images/gallery-20.jpg",
-  "/images/gallery-21.jpg",
-  "/images/gallery-22.jpg",
-  "/images/gallery-23.jpg",
-  "/images/gallery-24.jpg",
+/* Fanned deck — uses our own gallery so no external assets are needed. */
+const CARDS = [
+  {
+    src: "/images/gallery-09.jpg",
+    alt: "Wedding reception celebration",
+    rotate: -22,
+    delay: 0.9,
+    z: 10,
+  },
+  {
+    src: "/images/gallery-03.jpg",
+    alt: "Pre-wedding couple portrait",
+    rotate: -11,
+    delay: 0.75,
+    z: 20,
+  },
+  {
+    src: "/images/about.jpg",
+    alt: "Signature Passion Photography portrait",
+    rotate: 0,
+    delay: 0.6,
+    z: 30,
+  },
+  {
+    src: "/images/gallery-05.jpg",
+    alt: "Newborn baby session",
+    rotate: 11,
+    delay: 0.75,
+    z: 20,
+  },
+  {
+    src: "/images/gallery-02.jpg",
+    alt: "Traditional wedding moment",
+    rotate: 22,
+    delay: 0.9,
+    z: 10,
+  },
 ];
 
-function getGrid() {
-  // Guarded: only ever called inside useEffect (client-only), never during render.
-  const w = window.innerWidth;
-  const h = window.innerHeight;
-  const cols = w < 640 ? 4 : w < 1024 ? 6 : 8;
-  const tileH = w / cols / 0.8;
-  const rows = Math.min(6, Math.max(3, Math.ceil(h / tileH)));
-  return { cols, rows };
-}
-
-// SSR-safe default — must match server render exactly to avoid hydration mismatch.
-const SSR_GRID = { cols: 8, rows: 3 };
-
 export default function Hero() {
-  const [started, setStarted] = useState(false);
-  const [grid, setGrid] = useState(SSR_GRID);
+  const [spacing, setSpacing] = React.useState(120);
 
-  useEffect(() => {
-    const alreadyShown = sessionStorage.getItem("loaderShown");
-    const delay = alreadyShown ? 100 : 2400;
-    const timer = setTimeout(() => setStarted(true), delay);
-    return () => clearTimeout(timer);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    const update = () => setSpacing(mq.matches ? 84 : 120);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
-
-  useEffect(() => {
-    // Sync grid to real viewport after hydration — deferred to rAF so the
-    // first client render matches SSR exactly (no hydration mismatch).
-    const raf = requestAnimationFrame(() => setGrid(getGrid()));
-    const onResize = () => setGrid(getGrid());
-    window.addEventListener("resize", onResize);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
-
-  const reveal = (delay: number, amount = 24): CSSProperties => ({
-    opacity: started ? 1 : 0,
-    transform: started ? "translateY(0)" : `translateY(${amount}px)`,
-    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-  });
 
   return (
     <section
       id="home"
-      className="relative flex w-full items-center justify-center overflow-hidden px-4 py-24 sm:px-8"
-      style={{ minHeight: "100svh" }}
+      className="relative flex min-h-svh w-full flex-col overflow-hidden"
     >
+      {/* Soft luxury aura glows */}
       <div
-        className="hero-grid absolute inset-x-0 top-1/2 z-0 grid -translate-y-1/2"
         aria-hidden="true"
+        className="ember-orb left-1/2 top-[4%] h-[320px] w-[560px] -translate-x-1/2"
         style={{
-          gridTemplateColumns: `repeat(${grid.cols}, 1fr)`,
-          gap: 0,
+          background:
+            "radial-gradient(closest-side, rgba(176,138,60,0.14), transparent)",
         }}
-      >
-        {Array.from({ length: grid.cols * grid.rows }, (_, i) => (
-          <div
-            key={i}
-            style={{
-              overflow: "hidden",
-              background: "#1a1714",
-              aspectRatio: "4 / 5",
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element -- grid tiles require plain fill styling */}
-            <img
-              src={GRID_IMAGES[i % GRID_IMAGES.length]}
-              alt=""
-              loading={i < 8 ? "eager" : "lazy"}
-              draggable={false}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-                filter: "brightness(0.6)",
-              }}
-            />
-          </div>
-        ))}
-      </div>
-
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-bg/50 via-dark-bg/25 to-dark-bg/70" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(8,13,15,0.4)_100%)]" />
-
+      />
       <div
-        className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-6 px-2 text-center sm:gap-8 sm:px-6"
-        style={reveal(200)}
-      >
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+        aria-hidden="true"
+        className="ember-orb -left-24 bottom-[10%] h-[280px] w-[280px]"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(13,74,55,0.08), transparent)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="ember-orb -right-24 top-[30%] h-[300px] w-[300px]"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(20,51,60,0.9), transparent)",
+        }}
+      />
 
-        <div className="w-full">
-          <h1 className="chrome-text text-[clamp(2rem,9vw,4.5rem)] font-bold tracking-tight leading-[1.05] break-words">
-            Passion Photography
-          </h1>
-          <p className="mt-3 text-[0.65rem] sm:text-sm font-semibold uppercase tracking-[0.3em] sm:tracking-[0.5em] sm:pl-[0.5em] text-warm-white/80 leading-relaxed">
-            Wedding &amp; Newborn Studio · Kurnool
-          </p>
+      <div className="relative flex flex-1 flex-col items-center px-4 pb-0 pt-28 text-center sm:pt-32">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          <span className="eyebrow">★ 5.0 · 104 Google reviews · Kurnool</span>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="chrome-text font-display mt-6 max-w-2xl text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl"
+        >
+          Capture{" "}
+          <em className="font-bold italic text-gold-light">
+            Love &amp; Beginnings
+          </em>
+          <br />
+          that&apos;s ready to treasure
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.38, ease: "easeOut" }}
+          className="text-silver-glow mt-5 max-w-sm text-base leading-relaxed"
+        >
+          Weddings, newborns, maternity &amp; portraits in Kurnool — styled,
+          shot and delivered with passion.
+        </motion.p>
+
+        {/* Fanned card deck */}
+        <div
+          className="relative mt-10 flex h-[320px] w-full items-end justify-center sm:h-[380px]"
+        >
+          {CARDS.map((card, i) => (
+            <motion.div
+              key={card.src}
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.65,
+                delay: card.delay,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="absolute bottom-0 origin-bottom"
+              style={{
+                rotate: card.rotate,
+                zIndex: card.z,
+                translateX: `${(i - 2) * spacing}px`,
+              }}
+            >
+              <div className="h-60 w-40 overflow-hidden rounded-2xl border border-gold/30 shadow-[0_25px_50px_rgba(18,41,31,0.2)] ring-2 ring-gold-light/50 sm:h-72 sm:w-48 md:h-80 md:w-56">
+                {/* eslint-disable-next-line @next/next/no-img-element -- fan cards need plain img for motion transforms */}
+                <img
+                  src={card.src}
+                  alt={card.alt}
+                  loading={i === 2 ? "eager" : "lazy"}
+                  draggable={false}
+                  className="h-full w-full object-cover saturate-[1.1]"
+                />
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        <p className="text-silver-glow text-base sm:text-xl md:text-2xl max-w-3xl font-light leading-relaxed tracking-wide italic px-1">
-          &ldquo;Every wedding and newborn moment — captured with passion, care,
-          and a signature touch.&rdquo;
-        </p>
-
-        <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-5 mt-2 sm:mt-4 px-1">
-          <a
-            href="#portfolio"
-            className="btn-silver group relative px-8 sm:px-10 py-3.5 sm:py-4 text-sm sm:text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 text-center"
-          >
-            <span className="relative z-10">Explore Portfolio</span>
-            <div className="absolute inset-0 bg-gold-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-          </a>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 1.05 }}
+          className="mt-10 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-5"
+        >
           <a
             href="#contact"
-            className="btn-silver-outline group relative px-8 sm:px-10 py-3.5 sm:py-4 text-sm sm:text-base font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 text-center"
+            className="btn-silver group relative overflow-hidden rounded-full px-8 py-3.5 text-center text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 sm:px-10 sm:py-4 sm:text-base"
           >
-            <span className="relative z-10">Book Now</span>
-            <div className="absolute inset-0 bg-gold/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="relative z-10">Book Your Session</span>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 w-1/3 bg-white/50 blur-md"
+              style={{ animation: "ember-sheen 2.8s ease-in-out infinite" }}
+            />
           </a>
-        </div>
+          <a
+            href="#portfolio"
+            className="btn-silver-outline rounded-full px-8 py-3.5 text-center text-sm font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105 active:scale-95 sm:px-10 sm:py-4 sm:text-base"
+          >
+            Explore Portfolio
+          </a>
+        </motion.div>
+
+        <p className="mt-6 pb-8 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-muted-text">
+          Wedding <span className="text-gold mx-1">·</span> Newborn{" "}
+          <span className="text-ember mx-1">·</span> Studio Kurnool
+        </p>
       </div>
 
-      <div className="hero-scroll absolute bottom-6 right-4 sm:bottom-8 sm:right-8 z-10 hidden min-[400px]:flex flex-col items-center gap-2 text-warm-white/50" style={{ writingMode: "vertical-lr" }}>
-        <span className="text-[0.65rem] uppercase tracking-[0.2em]">Scroll</span>
-        <div
-          className="relative overflow-hidden"
-          style={{ width: 1, height: 60, background: "rgba(245,245,245,0.2)" }}
-        >
-          <div
-            className="absolute left-0 w-full"
-            style={{
-              top: "-100%",
-              height: "100%",
-              background: "var(--color-gold)",
-              animation: "scrollDown 2s ease infinite",
-            }}
-          />
-        </div>
-      </div>
+      {/* Melt into the next section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-dark-bg to-transparent" />
     </section>
   );
 }

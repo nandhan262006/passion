@@ -182,14 +182,14 @@ export default function Portfolio() {
       <img
         src={item.image}
         alt={item.title}
-        className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
+        className="w-full h-auto block rounded-md transition-transform duration-700 group-hover:scale-105 saturate-[1.08]"
         loading="lazy"
       />
 
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a241b]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
 
       <div className="absolute top-3 left-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0">
-        <span className="bg-gold/90 text-dark-bg text-[0.65rem] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        <span className="bg-gradient-to-r from-gold-light to-ember text-[#f7f4ec] text-[0.65rem] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-[0_2px_12px_rgba(13,74,55,0.35)]">
           {item.category}
         </span>
       </div>
@@ -217,21 +217,30 @@ export default function Portfolio() {
         </div>
       </div>
 
-      <div className="absolute inset-0 border border-gold/0 group-hover:border-gold/30 transition-colors duration-500 z-20 pointer-events-none rounded-lg" />
+      <div className="absolute inset-0 border border-gold/0 group-hover:border-gold/40 transition-colors duration-500 z-20 pointer-events-none rounded-lg shadow-[inset_0_0_24px_rgba(13,74,55,0.08)]" />
     </button>
   );
 
   return (
-    <section id="portfolio" className="py-16 sm:py-24 bg-dark-bg overflow-hidden">
-      <div ref={sectionRef}>
+    <section id="portfolio" className="relative py-16 sm:py-24 bg-dark-bg overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="ember-orb right-[5%] top-[6%] h-[280px] w-[280px]"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(13,74,55,0.06), transparent)",
+        }}
+      />
+      <div ref={sectionRef} className="relative">
         <div className="text-center mb-8 sm:mb-12 px-4 sm:px-6">
-          <span className="portfolio-header text-gold text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em]">
+          <span className="portfolio-header eyebrow">
             Our Work
           </span>
-          <h2 className="portfolio-header text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mt-3 sm:mt-4 text-balance">
+          <h2 className="portfolio-header font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-warm-white mt-5 text-balance">
             Portfolios
           </h2>
-          <p className="portfolio-header text-muted-text text-base sm:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto">
+          <div className="ember-divider mx-auto mt-5 w-40" />
+          <p className="portfolio-header text-muted-text text-base sm:text-lg mt-4 max-w-2xl mx-auto">
             From intimate newborn sessions to grand weddings — explore the full
             spectrum of our craft across Kurnool and nearby areas.
           </p>
@@ -245,7 +254,7 @@ export default function Portfolio() {
               className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[13px] sm:text-sm font-medium transition-all duration-300 min-h-[40px] ${
                 activeFilter === tab
                   ? "bg-gold text-dark-bg scale-105"
-                  : "border border-warm-white/15 text-muted-text hover:border-gold/40 hover:text-gold"
+                  : "border border-gold/25 bg-gold/[0.04] text-muted-text hover:border-gold/60 hover:text-gold hover:shadow-[0_4px_16px_rgba(13,74,55,0.15)]"
               }`}
             >
               {tab}
